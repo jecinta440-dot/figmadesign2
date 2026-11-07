@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myna UI - Harness the Power of Data</title>
+  <meta name="description" content="Turn global insights into actionable strategies with our analytics platform. Analyze, visualize, and optimize your business decisions effortlessly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="myna-hero.css">
+</head>
+<body class="myna-body">
+
+  <!-- SVG Noise Filter for Cosmic Grain Background -->
+  <svg class="noise-svg-filter" aria-hidden="true">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.18 0"/>
+    </filter>
+  </svg>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Space Ambient & Shimmering Glitter Layer -->
+  <div class="space-ambient-layer" aria-hidden="true">
+    <!-- Left-Side Glowing Warm Bokeh Orbs -->
+    <div class="bokeh-orb bokeh-1"></div>
+    <div class="bokeh-orb bokeh-2"></div>
+    <div class="bokeh-orb bokeh-3"></div>
+    <div class="bokeh-orb bokeh-4"></div>
+    <div class="bokeh-orb bokeh-5"></div>
+    <div class="bokeh-orb bokeh-6"></div>
+    <div class="bokeh-orb bokeh-7"></div>
+    <!-- Interactive Canvas for Sparkle Glitters & Data Dust -->
+    <canvas id="glitter-canvas"></canvas>
+  </div>
+
+  <div class="page-wrapper">
+
+    <!-- Top Navigation Header -->
+    <header class="myna-header">
+      <div class="myna-logo">
+        <svg class="logo-icon" width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stylized Myna bird silhouette -->
+          <path d="M1.5 12C3.8 8.5 7.5 7.5 11 9C13 9.8 15 9.5 17 8C19.5 6 22 3 24.5 1.5C24.8 1.3 25.2 1.6 25 2C24 4.5 22.5 7 20 8.8C18 10.2 16.5 11 14 11.5C9.5 12.5 5 15.5 1.5 20C1.2 20.4 0.8 19.8 1 19.3C2 17 2.2 14.5 1.5 12Z" fill="#FFFFFF"/>
+          <path d="M12 11.5C15 11.5 18 13.5 20.5 16.5C21.8 18 22.8 19.5 23.5 21C23.7 21.4 23.2 21.8 22.8 21.5C20.5 19.8 18 18.5 15 18C12 17.5 9.5 18.5 7 20.5C6.7 20.7 6.3 20.3 6.5 20C7.8 17.5 9.5 14 12 11.5Z" fill="#FFFFFF" opacity="0.9"/>
+        </svg>
+        <span class="logo-text">Myna UI</span>
+      </div>
+
+      <nav class="myna-nav-links">
+        <a href="#features">Features</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#resources">Resources</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#demo">Demo</a>
+      </nav>
+
+      <div class="myna-nav-action">
+        <a href="#get-started" class="btn-nav-orange">Get Started for Free</a>
+      </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="myna-hero-section">
+      <div class="hero-grid">
+
+        <!-- Left Column: Copy & CTAs -->
+        <div class="hero-left-content">
+          
+          <!-- Announcement Pill Badge -->
+          <div class="update-badge">
+            <span class="badge-text">Update: Enhanced Dataflows</span>
+            <a href="#read" class="badge-link">Read</a>
+          </div>
+
+          <!-- Hero Headline -->
+          <h1 class="hero-title">
+            Harness the<br>
+            Power of Data.
+          </h1>
+
+          <!-- Hero Subtitle -->
+          <p class="hero-subtitle">
+            Turn global insights into actionable strategies with our analytics platform. Analyze, visualize, and optimize your business decisions effortlessly
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-cta-buttons">
+            <a href="#get-started" class="btn-hero-orange">Get Started for Free</a>
+            <a href="#see-how-it-works" class="btn-hero-white">See How It Works</a>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Seamless Illuminated Globe Visual with Glitter Atmosphere -->
+        <div class="hero-right-visual">
+          <div class="globe-atmosphere-glow"></div>
+          <div class="globe-cyan-rim-light"></div>
+          <div class="globe-wrapper">
+            <img 
+              src="assets/earth-globe.jpg" 
+              alt="Illuminated 3D Earth Globe with Global Data Networks" 
+              class="globe-image"
+              id="globe-img"
+            >
+            <!-- Overlaid 4-Point Sparkling Stars -->
+            <div class="glitter-sparkle s1" style="--top: 14%; --left: 20%;"></div>
+            <div class="glitter-sparkle s2" style="--top: 28%; --left: 6%;"></div>
+            <div class="glitter-sparkle s3" style="--top: 46%; --left: 10%;"></div>
+            <div class="glitter-sparkle s4" style="--top: 62%; --left: 4%;"></div>
+            <div class="glitter-sparkle s5" style="--top: 76%; --left: 18%;"></div>
+            <div class="glitter-sparkle s6" style="--top: 20%; --left: 86%;"></div>
+            <div class="glitter-sparkle s7" style="--top: 50%; --left: 92%;"></div>
+            <div class="glitter-sparkle s8" style="--top: 38%; --left: 36%;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Feature Container -->
+      <div class="hero-bottom-bar">
+        <div class="bar-header-label">
+          <span>ANALYZE DATA 10X FASTER WITH AI-POWERED TOOLS</span>
+        </div>
+
+        <div class="bar-features-grid">
+
+          <!-- Feature 1: Powerful Dashboards -->
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="9" cy="9" r="1.2" fill="#FFFFFF" />
+                <circle cx="15" cy="9" r="1.2" fill="#FFFFFF" />
+                <path d="M8 14c1 1.5 2.5 2 4 2s3-.5 4-2" />
+              </svg>
+            </div>
+            <h3 class="feature-title">POWERFUL DASHBOARDS</h3>
+            <p class="feature-desc">Create intuitive, real-time dashboards to track your KPIs and business metrics</p>
+          </div>
+
+          <!-- Feature 2: Global Data Integration -->
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20" />
+                <path d="M2 12h20" />
+              </svg>
+            </div>
+            <h3 class="feature-title">GLOBAL DATA INTEGRATION</h3>
+            <p class="feature-desc">Integrate data from any source—cloud, on-premises, or third-party APIs—</p>
+          </div>
+
+          <!-- Feature 3: AI-Driven Insights -->
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF">
+                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+              </svg>
+            </div>
+            <h3 class="feature-title">AI-DRIVEN INSIGHTS</h3>
+            <p class="feature-desc">Leverage machine learning to uncover patterns and make data-driven decisions.</p>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Ambient Shimmering Glitter & Star Dust Script -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('glitter-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      let particles = [];
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        initParticles();
+      }
+
+      function initParticles() {
+        particles = [];
+        // Dense golden glittering field across the viewport and clustered near the globe
+        const totalCount = 95;
+        for (let i = 0; i < totalCount; i++) {
+          // Weight positions slightly towards the right and left edges
+          const isGlobeArea = Math.random() > 0.4;
+          const x = isGlobeArea 
+            ? (width * 0.45) + (Math.random() * width * 0.55)
+            : Math.random() * (width * 0.35);
+
+          const y = Math.random() * height;
+          const size = Math.random() > 0.85 ? Math.random() * 2.8 + 1.2 : Math.random() * 1.6 + 0.4;
+
+          particles.push({
+            x: x,
+            y: y,
+            size: size,
+            alpha: Math.random() * 0.75 + 0.25,
+            baseAlpha: Math.random() * 0.75 + 0.25,
+            speedY: (Math.random() - 0.5) * 0.25,
+            speedX: (Math.random() - 0.5) * 0.25,
+            pulseSpeed: Math.random() * 0.04 + 0.015,
+            color: Math.random() > 0.35 
+              ? 'rgba(255, 175, 75,' 
+              : (Math.random() > 0.5 ? 'rgba(255, 220, 140,' : 'rgba(255, 120, 40,')
+          });
+        }
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.alpha += Math.sin(Date.now() * p.pulseSpeed * 0.1) * 0.015;
+          const currentAlpha = Math.max(0.12, Math.min(0.95, p.alpha));
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color + currentAlpha + ')';
+          ctx.shadowBlur = p.size > 1.8 ? 10 : 4;
+          ctx.shadowColor = '#ff9100';
+          ctx.fill();
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+/* ==========================================================================
+   Myna UI - Harness the Power of Data (Pixel-Perfect Figma Replication)
+   ========================================================================== */
+
+:root {
+  --bg-dark: #000000;
+  --bg-base: #030406;
+  --text-white: #ffffff;
+  --text-muted: #949aa8;
+  --text-dim: #64748b;
+  --orange-primary: #ff5520;
+  --orange-hover: #f04815;
+  --orange-glow: rgba(255, 85, 32, 0.45);
+  --cyan-rim: rgba(56, 189, 248, 0.35);
+  --border-glass: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.myna-body {
+  position: relative;
+  background-color: var(--bg-base);
+  background-image: 
+    radial-gradient(circle at 10% 45%, rgba(255, 95, 30, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 75% 35%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(15, 17, 23, 0.9) 0%, transparent 60%);
+}
+
+/* ================= Film Grain / Cosmic Noise Overlay ================= */
+.noise-svg-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: url(#noiseFilter);
+  opacity: 0.38;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: overlay;
+}
+
+/* ================= Ambient Bokeh & Canvas Layer ================= */
+.space-ambient-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#glitter-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Warm Orange Glowing Bokeh Orbs on the Left Edge */
+.bokeh-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(14px);
+  opacity: 0.8;
+  animation: floatBokeh 11s ease-in-out infinite alternate;
+}
+
+.bokeh-1 {
+  width: 24px;
+  height: 24px;
+  background: #ff7e36;
+  left: 1.2%;
+  top: 22%;
+  filter: blur(5px);
+}
+
+.bokeh-2 {
+  width: 42px;
+  height: 42px;
+  background: #ff5722;
+  left: 0.2%;
+  top: 38%;
+  filter: blur(12px);
+  animation-delay: -2s;
+}
+
+.bokeh-3 {
+  width: 16px;
+  height: 16px;
+  background: #ffa834;
+  left: 3.2%;
+  top: 52%;
+  filter: blur(4px);
+  animation-delay: -4s;
+}
+
+.bokeh-4 {
+  width: 32px;
+  height: 32px;
+  background: #ff521a;
+  left: 0.6%;
+  top: 66%;
+  filter: blur(9px);
+  animation-delay: -6s;
+}
+
+.bokeh-5 {
+  width: 18px;
+  height: 18px;
+  background: #ffb443;
+  left: 4.5%;
+  top: 78%;
+  filter: blur(4px);
+  animation-delay: -1s;
+}
+
+.bokeh-6 {
+  width: 26px;
+  height: 26px;
+  background: #ff6a2b;
+  right: 2%;
+  top: 45%;
+  filter: blur(8px);
+  opacity: 0.5;
+  animation-delay: -3s;
+}
+
+.bokeh-7 {
+  width: 18px;
+  height: 18px;
+  background: #ffaa3b;
+  right: 3.5%;
+  top: 68%;
+  filter: blur(5px);
+  opacity: 0.6;
+  animation-delay: -5s;
+}
+
+@keyframes floatBokeh {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-18px) scale(1.12); }
+}
+
+/* ================= Page Wrapper ================= */
+.page-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ================= Top Navigation Header ================= */
+.myna-header {
+  width: 100%;
+  padding: 28px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.myna-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logo-icon {
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.myna-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.myna-nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color 0.18s ease;
+}
+
+.myna-nav-links a:hover {
+  color: #ffffff;
+}
+
+.myna-nav-action {
+  display: flex;
+  align-items: center;
+}
+
+.btn-nav-orange {
+  background-color: var(--orange-primary);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 12px var(--orange-glow);
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.btn-nav-orange:hover {
+  background-color: var(--orange-hover);
+  box-shadow: 0 4px 18px rgba(255, 85, 32, 0.6);
+  transform: translateY(-1px);
+}
+
+/* ================= Main Hero Section ================= */
+.myna-hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 48px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  align-items: center;
+  min-height: 520px;
+  gap: 20px;
+  padding-top: 15px;
+}
+
+/* Left Content */
+.hero-left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 580px;
+}
+
+/* Announcement Pill Badge */
+.update-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  padding: 4px 5px 4px 14px;
+  border-radius: 9999px;
+  margin-bottom: 28px;
+  backdrop-filter: blur(10px);
+}
+
+.badge-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #d1d5db;
+}
+
+.badge-link {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 11px;
+  border-radius: 9999px;
+  transition: background 0.15s ease;
+}
+
+.badge-link:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Headline */
+.hero-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 68px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin-bottom: 22px;
+}
+
+/* Subtitle */
+.hero-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16.5px;
+  line-height: 1.58;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 34px;
+  max-width: 480px;
+}
+
+/* Hero CTA Group */
+.hero-cta-buttons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-hero-orange {
+  background-color: var(--orange-primary);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px var(--orange-glow);
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.btn-hero-orange:hover {
+  background-color: var(--orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 85, 32, 0.65);
+}
+
+.btn-hero-white {
+  background-color: #ffffff;
+  color: #0b0c10;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.btn-hero-white:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.2);
+}
+
+/* ================= Right Visual (Globe & Atmosphere Filter) ================= */
+.hero-right-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Deep Ambient Glow Backdrop */
+.globe-atmosphere-glow {
+  position: absolute;
+  width: 580px;
+  height: 580px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 65% 35%, 
+    rgba(56, 189, 248, 0.28) 0%, 
+    rgba(255, 110, 40, 0.14) 45%, 
+    rgba(0, 0, 0, 0) 72%
+  );
+  filter: blur(52px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cyan Atmospheric Rim Light Arc along Top-Right */
+.globe-cyan-rim-light {
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  width: 380px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 60% 40%, 
+    rgba(186, 230, 253, 0.35) 0%, 
+    rgba(56, 189, 248, 0.2) 40%, 
+    transparent 70%
+  );
+  filter: blur(32px);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.globe-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 610px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  /* Seamless blending into deep background without hard edges */
+  mask-image: radial-gradient(circle at 50% 50%, black 65%, rgba(0, 0, 0, 0.8) 85%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 65%, rgba(0, 0, 0, 0.8) 85%, transparent 100%);
+}
+
+.globe-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: screen;
+  filter: brightness(1.05) contrast(1.08) drop-shadow(0 0 40px rgba(56, 189, 248, 0.25));
+  animation: subtleFloat 9s ease-in-out infinite alternate;
+}
+
+@keyframes subtleFloat {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-8px) scale(1.015); }
+}
+
+/* Overlaid Sparkle / Glitter 4-Point Stars */
+.glitter-sparkle {
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  width: 5px;
+  height: 5px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ffa726, 0 0 16px #ff7043;
+  z-index: 4;
+  pointer-events: none;
+  animation: sparkleTwinkle 3.2s ease-in-out infinite alternate;
+}
+
+.glitter-sparkle::before,
+.glitter-sparkle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%);
+}
+
+.glitter-sparkle::before {
+  width: 1px;
+  height: 14px;
+}
+
+.glitter-sparkle::after {
+  width: 14px;
+  height: 1px;
+}
+
+.glitter-sparkle.s1 { animation-delay: 0s; }
+.glitter-sparkle.s2 { animation-delay: 0.7s; transform: scale(1.2); }
+.glitter-sparkle.s3 { animation-delay: 1.4s; }
+.glitter-sparkle.s4 { animation-delay: 0.3s; transform: scale(0.9); }
+.glitter-sparkle.s5 { animation-delay: 1.9s; }
+.glitter-sparkle.s6 { animation-delay: 1.1s; transform: scale(1.1); }
+.glitter-sparkle.s7 { animation-delay: 2.2s; }
+.glitter-sparkle.s8 { animation-delay: 0.5s; transform: scale(1.3); }
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.75); }
+  50% { opacity: 1; transform: scale(1.25); filter: drop-shadow(0 0 6px #ffffff); }
+}
+
+/* ================= Bottom Feature Container ================= */
+.hero-bottom-bar {
+  width: 100%;
+  background: rgba(11, 13, 17, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 30px 44px 36px 44px;
+}
+
+.bar-header-label {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.bar-header-label span {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.bar-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.feature-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  color: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.feature-item:hover .feature-icon-wrapper {
+  transform: translateY(-2px) scale(1.1);
+  color: var(--orange-primary);
+}
+
+.feature-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.feature-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 320px;
+}
+
+/* ================= Responsive Layout ================= */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 50px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-left-content {
+    align-items: center;
+    max-width: 100%;
+  }
+  .hero-right-visual {
+    margin-top: 20px;
+  }
+  .bar-features-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding: 0 20px;
+  }
+  .myna-nav-links {
+    display: none;
+  }
+  .hero-title {
+    font-size: 38px;
+  }
+  .hero-cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-hero-orange, .btn-hero-white {
+    width: 100%;
+    text-align: center;
+  }
+  .hero-bottom-bar {
+    padding: 24px 20px;
+  }
+}
